@@ -5,7 +5,7 @@
 **DeepHyb** enables inference of historical hybrid speciation events using a Convolutional Neural Network (CNN) with embedded comprehensive multiple sequence alignment (MSA) features.
 
 - **PyPI**: [DeepHyb] no link available
-- **GitHub**: [DeepHyb](https://github.com/YiyongZhao/DeepHyb/tree/main/DeepHyb_CNN)
+- **GitHub**: [DeepHyb](https://github.com/XinzhengDu/DeepHyb/tree/main/DeepHyb_CNN)
 - **License**: MIT License
 - **Release Date**: October 2025
 - **Contacts**: 
@@ -15,8 +15,8 @@
 
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue)
 [![Documentation Status](http://readthedocs.org/projects/deephyb/badge/?version=latest)](http://deephyb.readthedocs.io)
-[![DeepHyb Issues](https://img.shields.io/badge/DeepHyb--Issues-blue)](https://github.com/YiyongZhao/DeepHyb/issues)
-![Build Status](https://travis-ci.org/YiyongZhao/DeepHyb.svg?branch=main)
+[![DeepHyb Issues](https://img.shields.io/badge/DeepHyb--Issues-blue)](https://github.com/XinzhengDu/DeepHyb/issues)
+![Build Status](https://travis-ci.org/XinzhengDu/DeepHyb.svg?branch=main)
 [![PyPI](https://img.shields.io/pypi/v/DeepHyb.svg)](https://pypi.python.org/pypi/DeepHyb)
 
 ### Introduction
@@ -37,7 +37,7 @@ DeepHyb was validated on genomic data from 92 *Heliconius* butterflies (a model 
 ### Clone and Install Environment
 ```bash
 # One-click installation via conda (https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html)
-git clone https://github.com/YiyongZhao/DeepHyb.git
+git clone https://github.com/XinzhengDu/DeepHyb.git
 cd DeepHyb/DeepHyb_CNN
 conda env create -f environment.yml # environment.yml not included; use pip for dependencies below
 conda activate DeepHyb
@@ -210,7 +210,7 @@ All outputs are saved in the "output_files" folder by default:
 
 
 ## Bug Reports
-Report bugs, request features, or ask questions via the [GitHub Issues page](https://github.com/YiyongZhao/DeepHyb/issues). Include:
+Report bugs, request features, or ask questions via the [GitHub Issues page](https://github.com/XinzhengDu/DeepHyb/issues). Include:
 - Your input PHYLIP file (or sample).
 - Command run and error logs (if any).
 
