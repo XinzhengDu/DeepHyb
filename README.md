@@ -9,7 +9,7 @@
 - **License**: MIT License
 - **Release Date**: October 2025
 - **Contacts**: 
-  - Xinzheng Du: [duxz@ustc.edu.cn](mailto:duxz@ustc.edu.cn) (Division of Life Sciences and Medicine, University of Science and Technology of China)
+  - Xinzheng Du: [xzdu@ustc.edu.cn](mailto:duxz@ustc.edu.cn) (Division of Life Sciences and Medicine, University of Science and Technology of China)
   - Yiyong Zhao (Corresponding Author): [yiyong.zhao@yale.edu](mailto:yiyong.zhao@yale.edu) (Department of Biomedical Informatics & Data Science, Yale University)                                                                    
 
 
