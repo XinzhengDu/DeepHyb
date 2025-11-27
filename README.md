@@ -30,7 +30,6 @@ Key capabilities of DeepHyb:
 
 DeepHyb was validated on genomic data from 92 *Heliconius* butterflies (a model system for evolutionary biology), achieving over 93% accuracy in classifying species relationships (hybrid + non-hybrid cases).
 <p align="center">
-  <img width="800" src="image/deephyb_architecture.jpg" alt="DeepHyb CNN Architecture">
 </p>
 *Figure: DeepHyb’s CNN architecture, processing 4 MSA-derived features via distinct branches to predict hybridization status (Target1) and parental/hybrid identities (Target2).*
 
