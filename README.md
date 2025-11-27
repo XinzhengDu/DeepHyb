@@ -5,7 +5,7 @@
 **DeepHyb** enables inference of historical hybrid speciation events using a Convolutional Neural Network (CNN) with embedded comprehensive multiple sequence alignment (MSA) features.
 
 - **PyPI**: [DeepHyb] no link available
-- **GitHub**: [DeepHyb](https://github.com/XinzhengDu/DeepHyb/tree/main/DeepHyb_CNN)
+- **GitHub**: [DeepHyb](https://github.com/XinzhengDu/DeepHyb)
 - **License**: MIT License
 - **Release Date**: October 2025
 - **Contacts**: 
@@ -38,7 +38,7 @@ DeepHyb was validated on genomic data from 92 *Heliconius* butterflies (a model 
 ```bash
 # One-click installation via conda (https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html)
 git clone https://github.com/XinzhengDu/DeepHyb.git
-cd DeepHyb/DeepHyb_CNN
+cd DeepHyb/
 conda env create -f environment.yml # environment.yml not included; use pip for dependencies below
 conda activate DeepHyb
 
