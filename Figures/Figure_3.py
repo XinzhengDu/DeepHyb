@@ -1,56 +1,101 @@
-import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
+import numpy as np
+import pandas as pd
 
-# 1. Construct data
-# Data includes 5 evaluation metrics across 9 models
-data = {
-    "legend": [
-        "HYB Accuracy", "HYB Precision", 
-        "HYB Recall", "HYB F1 Score", 
-        "Combinations Accuracy"
-    ],
-    "Model 1": [0.935976336, 0.936175407, 0.935976336, 0.935818906, 0.99027494],
-    "Model 2": [0.9465, 0.9467, 0.9465, 0.9464, 0.989283282],
-    "Model 3": [0.9511, 0.9512, 0.9511, 0.9511, 0.989968505],
-    "Model 4": [0.9372, 0.9373, 0.9372, 0.9370, 0.9902111],
-    "Model 9": [0.952608955, 0.952680466, 0.952608955, 0.952537274, 0.994292646],
-    "Model 10": [0.943117978, 0.94333767, 0.943117978, 0.942982156, 0.990168539],
-    "Model 11": [0.956005277, 0.956033893, 0.956005277, 0.955954393, 0.995003405],
-    "Model 12": [0.950629894, 0.950827486, 0.950629894, 0.950523708, 0.994096868],
-    "Model 16": [0.8648, 0.8656, 0.8648, 0.8650, 0.9539]
-}
 
-# 2. Convert to DataFrame and reshape from wide to long format
-# Long format is required for seaborn's grouped barplot
-df = pd.DataFrame(data)
-df_long = df.melt(id_vars="legend", var_name="Model ", value_name="Accuracy")
+title_text = "Performance comparison: DeepHyb vs HyDe"
+subtitle_metrics = "Key classification metrics"
+subtitle_types = "Accuracy across four-taxon combinations"
+xlabel_types = "Four-taxon combinations"
+ylabel_score = "Score"
+legend_deephyd = "DeepHyb"
+legend_hyde = "HyDe"
 
-# 3. Plot grouped bar chart
-plt.figure(figsize=(10, 6))  # Set figure size (width, height) in inches
-sns.barplot(
-    data=df_long, 
-    x="Model ",       # X-axis: Model identifiers
-    y="Accuracy",     # Y-axis: Metric values
-    hue="legend",     # Grouping: Different evaluation metrics
-    palette="Set2"    # Color palette for distinction between metrics
-)
 
-# 4. Enhance plot aesthetics
-plt.xlabel("Model ", fontsize=12)  # X-axis label
-plt.ylabel("Accuracy", fontsize=12)  # Y-axis label
-plt.ylim(0.85, 1.0)  # Restrict Y-axis range to highlight differences
+metrics = ["Accuracy", "Precision", "Recall", "F1 Score"]
+deephyd_metrics = [0.8773, 0.5, 1.0, 0.6667]
+hyde_metrics = [0.8501, 0.4501, 1.0, 0.6202]
 
-# 5. Customize legend
-# Remove frame and title, position at upper right
-plt.legend(frameon=False, title=None, loc='upper right', bbox_to_anchor=(0.95, 0.95))
 
-# 6. Adjust layout to prevent clipping
-plt.tight_layout(rect=[0, 0, 1, 1])  # Ensure all elements fit within figure bounds
+types = [
+    "O_S1_S1_S1", "O_S1_S1_S2", "O_S1_S1_H", "O_S1_S1_S3", "O_S1_S2_S2",
+    "O_S1_S2_H", "O_S1_H_H", "O_S1_S2_S3", "O_S1_H_S3", "O_S1_S3_S3",
+    "O_S2_S2_S2", "O_S2_S2_H", "O_S2_H_H", "O_H_H_H", "O_S2_S2_S3",
+    "O_S2_H_S3", "O_H_H_S3", "O_S2_S3_S3", "O_H_S3_S3", "O_S3_S3_S3"
+]
+deephyd_types_acc = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0]
+hyde_types_acc = [0.9920, 0.9649, 0.9667, 0.9667, 0.9660, 0.9633, 0.9638, 0.9626, 1.0, 0.9573, 0.9840, 0.9620, 0.9622, 0.9980, 0.9611, 0.0, 0.9622, 0.9602, 0.9684, 0.9880]
 
-# 7. Save as SVG vector format (editable in Adobe Illustrator)
-# SVG preserves vector paths for无损 editing (scaling without quality loss)
-plt.savefig("Figure_2.svg", format="svg", bbox_inches="tight")
 
-# Optional: Display the plot in the console
-plt.show()
+gap_scale = 0.9  #
+font_scale = 1.0  
+legend_y_pos = 0.95  
+
+
+plt.rcParams['font.family'] = 'Arial'
+plt.rcParams['font.size'] = 8 * font_scale
+plt.rcParams['axes.labelsize'] = 10 * font_scale
+plt.rcParams['axes.titlesize'] = 12 * font_scale
+plt.rcParams['legend.fontsize'] = 9 * font_scale
+plt.rcParams['xtick.labelsize'] = 7 * font_scale
+plt.rcParams['ytick.labelsize'] = 8 * font_scale
+
+
+color_deephyd = '#2E86AB'
+color_hyde = '#A23B72'
+color_grid = '#E0E0E0'
+
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12 * gap_scale, 11 * gap_scale), gridspec_kw={'height_ratios': [1, 2.5]})
+
+
+x_metrics = np.arange(len(metrics))
+width = 0.35 * gap_scale
+bars1 = ax1.bar(x_metrics - width/2, deephyd_metrics, width, label=legend_deephyd, color=color_deephyd, alpha=0.8, edgecolor='white', linewidth=1)
+bars2 = ax1.bar(x_metrics + width/2, hyde_metrics, width, label=legend_hyde, color=color_hyde, alpha=0.8, edgecolor='white', linewidth=1)
+
+
+ax1.set_title(subtitle_metrics, fontweight='bold', pad=10 * gap_scale)
+ax1.set_ylabel(ylabel_score, fontweight='bold')
+ax1.set_xticks(x_metrics)
+ax1.set_xticklabels(metrics)
+ax1.set_ylim(0, 1.1)
+ax1.grid(axis='y', alpha=0.3, color=color_grid)
+ax1.legend(loc=(1.02, legend_y_pos), frameon=True, fancybox=True, shadow=True, framealpha=0.8)
+ax1.spines['top'].set_visible(False)
+ax1.spines['right'].set_visible(False)
+
+
+for bar in bars1:
+    height = bar.get_height()
+    ax1.text(bar.get_x() + bar.get_width()/2., height + 0.01, f'{height:.4f}', ha='center', va='bottom', fontsize=7 * font_scale)
+for bar in bars2:
+    height = bar.get_height()
+    ax1.text(bar.get_x() + bar.get_width()/2., height + 0.01, f'{height:.4f}', ha='center', va='bottom', fontsize=7 * font_scale)
+
+
+x_types = np.arange(len(types))
+line1 = ax2.plot(x_types, deephyd_types_acc, marker='o', linewidth=2.5 * gap_scale, markersize=4 * gap_scale, color=color_deephyd, label=legend_deephyd, alpha=0.9)
+line2 = ax2.plot(x_types, hyde_types_acc, marker='s', linewidth=2.5 * gap_scale, markersize=4 * gap_scale, color=color_hyde, label=legend_hyde, alpha=0.9)
+
+
+ax2.set_title(subtitle_types, fontweight='bold', pad=10 * gap_scale)
+ax2.set_xlabel(xlabel_types, fontweight='bold', labelpad=15 * gap_scale)
+ax2.set_ylabel(ylabel_score, fontweight='bold')
+ax2.set_xticks(x_types)
+ax2.set_xticklabels(types, rotation=45, ha='right', rotation_mode='anchor')
+ax2.set_ylim(-0.05, 1.05)
+ax2.grid(axis='y', alpha=0.3, color=color_grid)
+ax2.legend(loc=(1.02, legend_y_pos), frameon=True, fancybox=True, shadow=True, framealpha=0.8)
+ax2.spines['top'].set_visible(False)
+ax2.spines['right'].set_visible(False)
+
+
+fig.suptitle(title_text, fontweight='bold', fontsize=14 * font_scale, y=0.97)
+
+
+plt.tight_layout()
+plt.subplots_adjust(top=0.92, hspace=0.5 * gap_scale, bottom=0.12, right=0.85)
+
+
+plt.savefig('Figure_3.svg', format='svg', dpi=300, bbox_inches='tight')
