@@ -157,7 +157,7 @@ python DeepHybCNN.py \
   --test_folder ./output_jsons/test \
   --epochs 10000 \
   --batch_size 512 \
-  --lr 0.0003 \
+  --lr 0.0001 \
   --maxloss 0.01 \
   --model_save_path ./models/deephyb_cnn.pth \
   --loss_save_path ./logs/deephyb_loss.json
