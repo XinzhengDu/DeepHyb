@@ -49,10 +49,7 @@ pip install torch scikit-learn numpy pandas tqdm shap argparse tensorflow
 pip install hyde-python
 ```
 
-### Install from PyPI with pip
-```bash
-pip install DeepHyb # Cannot install from PyPI currently
-```
+
 
 ## Usage 
 ### Datasets for CNN Training
